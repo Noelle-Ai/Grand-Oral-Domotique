@@ -1,0 +1,42 @@
+ErrorDocument 400 https://http.cat/400
+ErrorDocument 401 https://http.cat/401
+ErrorDocument 402 https://http.cat/402
+ErrorDocument 403 https://http.cat/403
+ErrorDocument 404 https://http.cat/404
+ErrorDocument 405 https://http.cat/405
+ErrorDocument 406 https://http.cat/406
+ErrorDocument 407 https://http.cat/407
+ErrorDocument 408 https://http.cat/408
+ErrorDocument 409 https://http.cat/409
+ErrorDocument 410 https://http.cat/410
+ErrorDocument 411 https://http.cat/411
+ErrorDocument 412 https://http.cat/412
+ErrorDocument 413 https://http.cat/413
+ErrorDocument 414 https://http.cat/414
+ErrorDocument 415 https://http.cat/415
+ErrorDocument 416 https://http.cat/416
+ErrorDocument 417 https://http.cat/417
+ErrorDocument 418 https://http.cat/418
+ErrorDocument 422 https://http.cat/422
+ErrorDocument 423 https://http.cat/423
+ErrorDocument 424 https://http.cat/424
+ErrorDocument 426 https://http.cat/426
+ErrorDocument 500 https://http.cat/500
+ErrorDocument 501 https://http.cat/501
+ErrorDocument 502 https://http.cat/502
+ErrorDocument 503 https://http.cat/503
+ErrorDocument 504 https://http.cat/504
+ErrorDocument 505 https://http.cat/505
+ErrorDocument 506 https://http.cat/506
+ErrorDocument 507 https://http.cat/507
+ErrorDocument 508 https://http.cat/508
+ErrorDocument 510 https://http.cat/510
+
+RewriteEngine On
+Options -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^sensors/(.*)$ /sensor.php?id=$1 [L]
