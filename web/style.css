@@ -99,7 +99,7 @@ p {
 }
 
 nav {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     position: sticky;
     top: 0px;
@@ -169,5 +169,5 @@ nav > ul li:hover .sousderoulant {
 }
 
 .deroulant > a::after {
-    font-size: 12px;
+    font-size: 10px;
 }
