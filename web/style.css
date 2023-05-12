@@ -99,7 +99,7 @@ p {
 }
 
 nav {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     position: sticky;
     top: 0px;
@@ -170,4 +170,12 @@ nav > ul li:hover .sousderoulant {
 
 .deroulant > a::after {
     font-size: 10px;
+}
+
+.pencil {
+    filter: invert(1);
+    height: 25px;
+    width: 25px;
+
+    
 }
