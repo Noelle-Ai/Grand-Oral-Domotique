@@ -78,13 +78,12 @@ button {
 }
 
 
-button.on {
+.on {
     background-color: #0daa0d;
 }
 
-button.off {
+.off {
     background-color: #dd2a2a;
-    display: none;
 }
 
 p {

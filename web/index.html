@@ -27,75 +27,77 @@
             <div class="grid">
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn1" class="on" onclick='OnOff("#mybtn1")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" id="btn" onclick="OnOff">On</button>
+                        <button id="mybtn2" class="on" onclick='OnOff("#mybtn2")'>On</button>
                     </div>
 
                     <script>
-                        const btn = document.querySelector("#btn");
-                        console.log(btn);
-                        function OnOff(e) {
-                            console.log(e)
-                            if (btn.style.backgroundColor = "#0daa0d") {
-                                btn.style.backgroundColor = "#dd2a2a";
-                            } else if (btn.style.backgroundColor = "#dd2a2a") {
-                                btn.style.backgroundColor = "#0daa0d";
+                        
+                        function OnOff(id) {
+                            const btn = document.querySelector(id);
+                            if (btn.className == "on") {
+                                btn.className = "off";
+                                btn.textContent = "Off";
+                            } else if (btn.className == "off") {
+                                btn.className = "on";
+                                btn.textContent = "On";
                             }
                         }
+
                     </script>
 
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn3" class="on" onclick='OnOff("#mybtn3")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn4" class="on" onclick='OnOff("#mybtn4")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn5" class="on" onclick='OnOff("#mybtn5")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn6" class="on" onclick='OnOff("#mybtn6")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn7" class="on" onclick='OnOff("#mybtn7")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn8" class="on" onclick='OnOff("#mybtn8")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn9" class="on" onclick='OnOff("#mybtn9")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
                 <div class="block">
                     <div class="buttons">
-                        <button class="on" class="off" onclick="OnOff()">On</button>
+                        <button id="mybtn10" class="on" onclick='OnOff("#mybtn10")'>On</button>
                     </div>
                     <p>Test</p>
                 </div>
