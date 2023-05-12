@@ -70,3 +70,15 @@ $(document).ready(() => {
     setupGraph("myChart", "temp_int", "Temperature Intérieur (°C)")
     setupGraph("myChart2", "temp_ext", "Temperature Exterieur (°C)")
 })
+
+
+function OnOff(id) {
+    const btn = document.querySelector(id);
+        if (btn.className == "on") {
+            btn.className = "off";
+            btn.textContent = "Off";
+        } else if (btn.className == "off") {
+            btn.className = "on";
+            btn.textContent = "On";
+        }
+}
