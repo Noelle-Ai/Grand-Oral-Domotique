@@ -37,11 +37,12 @@ body {
 }
 
 .block {
-    height: 20vh;
-    width: 16vw;
-    margin-left: 0.3vw;
-    margin-top: 1vh;
-    margin-right: 0vw;
+    height: 16vh;
+    width: 12vw;
+    margin-left: 2.3vw;
+    margin-top: 4vh;
+    margin-right: 2.3vw;
+    margin-bottom: 4vh;
     padding: 0px;
     display: flex;
     flex-direction: column;
@@ -61,11 +62,14 @@ body {
 }
 
 button {
-    height: 5vh;
-    width: 4vw;
+    height: 14vh;
+    width: 12vw;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 30px;
+    font-size: 1.3em;
+    margin-bottom: 5px;
 }
 
 .buttons {
@@ -74,17 +78,14 @@ button {
 }
 
 
-.on {
+button.on {
     background-color: #0daa0d;
-    border-radius: 25px;
-    font-size: 1.3em;
 }
 
-/*.off {
+button.off {
     background-color: #dd2a2a;
-    border-radius: 25px;
-    font-size: 1.3em;
-}*/
+    display: none;
+}
 
 p {
     padding: 0%;
@@ -169,6 +170,5 @@ nav > ul li:hover .sousderoulant {
 }
 
 .deroulant > a::after {
-    content: " ▼";
     font-size: 12px;
 }
