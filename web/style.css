@@ -61,7 +61,7 @@ body {
     border-radius: 50px;
 }
 
-button {
+.buttons {
     height: 14vh;
     width: 12vw;
     color: white;
@@ -72,7 +72,7 @@ button {
     margin-bottom: 5px;
 }
 
-.buttons {
+.gridbuttons {
     display: flex;
     gap: 0;
 }
@@ -175,17 +175,25 @@ nav > ul li:hover .sousderoulant {
     filter: invert(1);
     height: 10%;
     width: 10%;
-    float: right;
     z-index: 15;
     padding: 1%;
     margin: 1%;
-    background-color: #0daa0d;
+    float: right;
+}
+
+.menu-item {
+    align-items: center;
+    display: flex;
 }
 
 .pencil:hover {
     border-image: 10;
     background-color: rgba(86, 86, 86, 0.5);
     border-radius: 15%;
+}
+
+.actualpage {
+    color: #0daa0d;
 }
 
 .color {
