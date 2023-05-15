@@ -144,7 +144,7 @@ nav a:hover {
     background-color: #565656;
     position: absolute;
     width: 100%;
-    z-index: 1000;
+    z-index: 10;
     border-radius: 5px;
 }
 
@@ -154,7 +154,7 @@ nav > ul li:hover .sousderoulant {
 
 .sousderoulant li {
     float: none;
-    width: 100%;
+    width: 85%;
     text-align: left;
 }
 
@@ -165,7 +165,6 @@ nav > ul li:hover .sousderoulant {
 
 .sousderoulant a:hover {
     border-bottom: none;
-    background-color: rgba(200, 200, 200, 0.1);
 }
 
 .deroulant > a::after {
@@ -174,6 +173,21 @@ nav > ul li:hover .sousderoulant {
 
 .pencil {
     filter: invert(1);
-    height: 25px;
-    width: 25px;
+    height: 10%;
+    width: 10%;
+    float: right;
+    z-index: 15;
+    padding: 1%;
+    margin: 1%;
+    background-color: #0daa0d;
+}
+
+.pencil:hover {
+    border-image: 10;
+    background-color: rgba(86, 86, 86, 0.5);
+    border-radius: 15%;
+}
+
+.color {
+    background-color: #0daa0d;
 }
