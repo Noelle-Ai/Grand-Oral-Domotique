@@ -30,7 +30,7 @@ import threading
 import io
 import uvicorn
 
-from picamera2 import MappedArray, Picamera2, Preview
+#from picamera2 import MappedArray, Picamera2, Preview
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import StreamingResponse
 from fastapi.exceptions import HTTPException
@@ -39,6 +39,7 @@ import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime as dt
+from fastapi.middleware.cors import CORSMiddleware
 
 tensorThread = None
 processThread = None
@@ -62,21 +63,28 @@ class TensorThread(threading.Thread):
         self.rectangles = []
         self.buffer = None
         
-        self.picam2 = Picamera2()
+        #self.picam2 = Picamera2()
         #picam2.start_preview(Preview.QTGL)
-        config = self.picam2.create_preview_configuration(main={"size": self.normalSize},
-                                                         lores={"size": self.lowresSize, "format": "YUV420"})
-        self.picam2.configure(config)
+        #config = self.picam2.create_preview_configuration(main={"size": self.normalSize},
+        #                                                 lores={"size": self.lowresSize, "format": "YUV420"})
+        #self.picam2.configure(config)
 
-        stride = self.picam2.stream_configuration("lores")["stride"]
-        self.picam2.post_callback = self.DrawRectangles
+        #stride = self.picam2.stream_configuration("lores")["stride"]
+        #self.picam2.post_callback = self.DrawRectangles
 
-        self.picam2.start()
+        #self.picam2.start()
+        self.cam = cv2.VideoCapture(0)
 
         while True:
-            self.buffer = self.picam2.capture_buffer("lores")
-            grey = self.buffer[:stride * self.lowresSize[1]].reshape((self.lowresSize[1], stride))
-            _ = self.InferenceTensorFlow(grey, "mobilenet_v2.tflite", None, "coco_labels.txt")
+            #self.buffer = self.picam2.capture_buffer("lores")
+            ret, image = self.cam.read()
+            self.buffer = image
+            if not ret:
+                print("Could not get video image!")
+                continue
+
+            #grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) #self.buffer[:stride * self.lowresSize[1]].reshape((self.lowresSize[1], stride))
+            _ = self.InferenceTensorFlow(image, "mobilenet_v2.tflite", None, "coco_labels.txt")
         
     def ReadLabelFile(self, file_path):
         with open(file_path, 'r') as f:
@@ -102,7 +110,7 @@ class TensorThread(threading.Thread):
                                 font, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
 
-    def InferenceTensorFlow(self, image, model, output, label=None):
+    def InferenceTensorFlow(self, rgb, model, output, label=None):
         #global rectangles
 
         if label:
@@ -121,7 +129,7 @@ class TensorThread(threading.Thread):
         if input_details[0]['dtype'] == np.float32:
             floating_model = True
 
-        rgb = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        #rgb = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         initial_h, initial_w, channels = rgb.shape
 
         picture = cv2.resize(rgb, (width, height))
@@ -186,11 +194,33 @@ def process_data():
 def gen():
     while True:
         data = io.BytesIO()
-        tensorThread.picam2.capture_file(data, format='jpeg')
-        frame = data.getbuffer()
+        img = tensorThread.buffer
+        for rect in tensorThread.rectangles:
+            (startX, startY, endX, endY, label) = rect
+            startX = int(startX)
+            startY = int(startY)
+            endX = int(endX)
+            endY = int(endY)
+
+            if label != "person":
+                continue
+
+            cv2.rectangle(img, (startX, startY), (endX, endY), (0, 255, 0), 2)
+        frame = cv2.imencode('.jpg', img)[1].tobytes()
+        #frame = data.getbuffer()
         yield(b'--frame\r\n'
               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
         time.sleep(0.05)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/stream')
 def stream():
@@ -245,8 +275,8 @@ def main():
     tensorThread.start()
 
     global processThread
-    processThread = threading.Thread(target=process_data)
-    processThread.start()
+#    processThread = threading.Thread(target=process_data)
+#    processThread.start()
 
     uvicorn.run(app, host="0.0.0.0", port=5000, access_log=True)
 
