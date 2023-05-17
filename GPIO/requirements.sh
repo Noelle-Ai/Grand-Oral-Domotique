@@ -9,6 +9,7 @@ sudo pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-dht
 sudo apt-get install libgpiod2
 sudo pip3 install adafruit-circuitpython-bh1750
+sudo pip3 install pydantic
 pip install "fastapi[all]"
 pip install "uvicorn[standard]"
 sudo apt-get update

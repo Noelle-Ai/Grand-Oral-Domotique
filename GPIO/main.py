@@ -1,12 +1,14 @@
 import Adafruit_DHT
 import adafruit_bh1750
 import board
-from fastapi import FastAPI
 import requests
 import smbus
 import threading
 import time
 import uvicorn
+
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 AM2302_sensor = Adafruit_DHT.AM2302
 AM2302_pin = 23
@@ -17,9 +19,19 @@ sensor = adafruit_bh1750.BH1750(i2c)
 app = FastAPI()
 
 
+class StoreRequest(BaseModel):
+    status: bool
+    enabled: bool
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@app.post("/store")
+async def store(req: StoreRequest):  # Requête de gestion du store
+    return req
 
 
 def get_data():
