@@ -173,12 +173,12 @@ nav > ul li:hover .sousderoulant {
 
 .pencil {
     filter: invert(1);
-    height: 10%;
-    width: 10%;
     z-index: 15;
-    padding: 1%;
-    margin: 1%;
+    padding: 2.5%;
+    margin: 2.5%;
     float: right;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .menu-item {
@@ -190,6 +190,22 @@ nav > ul li:hover .sousderoulant {
     border-image: 10;
     background-color: rgba(86, 86, 86, 0.5);
     border-radius: 15%;
+}
+
+.menuBtn {
+    width: 15%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.menuBtn:hover {
+ cursor: pointer;
+}
+
+#cam {
+    margin: 1.5%;
+    border-radius: 50px;
 }
 
 .actualpage {
