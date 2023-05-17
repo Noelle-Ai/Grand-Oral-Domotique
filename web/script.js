@@ -30,7 +30,7 @@ $(document).ready(() => {
             }
         });
     
-        my_func = () => {
+        fetchData = () => {
             $.ajax({
                 url: "http://172.21.184.53:5000/data",
                 type: "POST",
@@ -45,7 +45,6 @@ $(document).ready(() => {
     
                     labels = []
                     for(let i in json.data) {
-                        console.log(i)
                         if(i % 3 != 0) {
                             labels[i] = "";
                         }
@@ -63,22 +62,17 @@ $(document).ready(() => {
             })
         }
     
-        my_func();
-        setInterval(my_func, 5000)
+        fetchData();
+        setInterval(fetchData, 5000)
     }
 
     setupGraph("myChart", "temp_int", "Temperature Intérieur (°C)")
     setupGraph("myChart2", "temp_ext", "Temperature Exterieur (°C)")
 })
 
-
 function OnOff(id) {
     const btn = document.querySelector(id);
-        if (btn.className == "on") {
-            btn.className = "off";
-            btn.textContent = "Off";
-        } else if (btn.className == "off") {
-            btn.className = "on";
-            btn.textContent = "On";
-        }
+    btn.classList.toggle("on");
+    btn.classList.toggle("off");
+    btn.textContent = btn.classList.contains("on") ? "On" : "Off";
 }
