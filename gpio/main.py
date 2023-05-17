@@ -82,10 +82,12 @@ def get_data():
                                           "value": humidity
                                       })
 
-        r_lux = requests.put('http://172.21.184.53:5000/data', headers={"Authorization": 'bonjourjaimelespates'}, json={
-            "name": "luminosity_int",
-            "value": sensor.lux
-        })
+        r_lux = requests.put('http://172.21.184.53:5000/data',
+                             headers={"Authorization": 'bonjourjaimelespates'},
+                             json={
+                                 "name": "luminosity_int",
+                                 "value": sensor.lux
+                             })
 
         print("---------------------------------------------------")
 
