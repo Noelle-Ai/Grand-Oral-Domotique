@@ -1,3 +1,12 @@
+<?php
+$json = json_decode(file_get_contents("http://172.21.184.53:5000/sensors"), true);
+
+if(!$json["success"]) {
+    echo '<img src="https://http.cat/503"></img>';
+    return;
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -13,11 +22,22 @@
                     <li class="deroulant"><a>Menu</a>
                         <ul class="sousderoulant">
                             <li><a class="actualpage">Home</a></li>
-                            <li><a href="camera.html">Caméra</a></li>
-                            <div class="menu-item"><li><a href="sensor.php" class="TempInt">Température Intérieur</a></li><button class="menuBtn"><img src="pencil.png" class="pencil TempInt"/></button></div>
-                            <div class="menu-item"><li><a href="sensor.php" class="TempExt">Temp Extérieur</a></li><button class="menuBtn"><img src="pencil.png" class="pencil TempExt"/></button></div>
-                            <div class="menu-item"><li><a href="sensor.php" class="Humid">Humidité</a></li><button class="menuBtn"><img src="pencil.png" class="pencil Humid"/></button></div>
-                            <div class="menu-item"><li><a href="sensor.php" class="Lumin">Luminosité</a></li><button class="menuBtn"><img src="pencil.png" class="pencil Lumin"/></button></div>
+                            <li><a href="camera.php">Caméra</a></li>
+                            <?php
+                                foreach($json["data"] as $key => $value) {
+                            ?>
+                                <div class="menu-item">
+                                    <li>
+                                        <a href="sensor.php?id=<? echo $value['id']; ?>"><? echo $value["name"] ?></a>
+                                    </li>
+                                    
+                                    <button id="btn-<? echo $value["id"]; ?>" class="menuBtn">
+                                        <img src="pencil.png" class="pencil TempInt"/>
+                                    </button>
+                                </div>
+                            <?php
+                                }
+                            ?>
                         </ul>
                     </li>
                 </ul>
