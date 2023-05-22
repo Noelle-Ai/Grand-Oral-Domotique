@@ -28,7 +28,7 @@ if(!$json["success"]) {
                             ?>
                                 <div class="menu-item">
                                     <li>
-                                        <a href="sensor.php?id=<? echo $value[id]; ?>" class="TempInt"><? echo $value["name"] ?></a>
+                                        <a href="sensor.php?id=<? echo $value[id]; ?>"><? echo $value["name"] ?></a>
                                     </li>
                                     
                                     <button id="btn-<? echo $value["id"]; ?>" class="menuBtn">
