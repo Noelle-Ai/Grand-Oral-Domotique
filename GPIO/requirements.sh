@@ -12,6 +12,7 @@ sudo pip3 install adafruit-circuitpython-bh1750
 sudo pip3 install -U pydantic
 pip install "fastapi[all]"
 pip install "uvicorn[standard]"
+pip install RPi.GPIO
 sudo apt-get update
 sudo apt-get install python3-smbus python-dev python3-dev i2c-tools git-all
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git

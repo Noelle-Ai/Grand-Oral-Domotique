@@ -2,6 +2,7 @@ import Adafruit_DHT
 import adafruit_bh1750
 import board
 import requests
+import RPi.GPIO as GPIO
 import smbus
 import threading
 import time
@@ -11,16 +12,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 AM2302_sensor = Adafruit_DHT.AM2302
-AM2302_pin = 23
+AM2302_pin = 4
 bus = smbus.SMBus(1)
 i2c = board.I2C()
 sensor = adafruit_bh1750.BH1750(i2c)
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(21, GPIO.OUT, initial=GPIO.LOW)
+
 app = FastAPI()
 
 
-class StoreRequest(BaseModel):
-    status: bool
+class LedRequest(BaseModel):
     enabled: bool
 
 
@@ -29,9 +32,13 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.post("/store")
-async def store(req: StoreRequest):  # Requête de gestion du store
-    return req
+@app.post("/led")
+async def led(req: LedRequest):  # Requête de gestion du store
+    print(req)
+    status = GPIO.LOW
+    if req.enabled:
+        status = GPIO.HIGH
+    GPIO.output(21, status)
 
 
 def get_data():
