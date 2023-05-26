@@ -16,12 +16,13 @@ if(!$json["success"]) {
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        
         <div id="sidebar">
             <nav>
                 <ul>
                     <li class="deroulant"><a>Menu</a>
                         <ul class="sousderoulant">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li><a class="actualpage">Caméra</a></li>
                             <?php
                                 foreach($json["data"] as $key => $value) {

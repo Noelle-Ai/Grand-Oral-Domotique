@@ -1,10 +1,5 @@
 <?php
 $json = json_decode(file_get_contents("http://172.21.184.53:5000/sensors"), true);
-
-if(!$json["success"]) {
-    echo '<img src="https://http.cat/503"></img>';
-    return;
-} 
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +11,12 @@ if(!$json["success"]) {
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <?php
+            if($json["success"]) {
+                echo '<img src="https://http.cat/503" id="cat503"></img>';
+                return;
+            } else {
+        ?>
         <div id="sidebar">
             <nav>
                 <ul>
@@ -120,5 +121,8 @@ if(!$json["success"]) {
           <script src="./script.js"></script>
           </div>
         </div>
+        <?php
+            }
+        ?>
     </body>
 </html>

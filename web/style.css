@@ -216,6 +216,8 @@ nav > ul li:hover .sousderoulant {
     background-color: #0daa0d;
 }
 
-.textInput {
-    color: white;
+#cat503 {
+    display: block;
+    position: absolute;
+    margin: auto;
 }
